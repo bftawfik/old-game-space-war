@@ -91,8 +91,8 @@ function HelpScreen(gsr){
   this.draw = function(gameCntx){
     if(this.currentState != this.states.off){
       gameCntx.save();
-      this.x = (this.org.x + (gameGFX.helpScreen.sprites[0].width * (1-this.scale)/2)) * this.gameScaleRatio;
-      this.y = (this.org.y + (gameGFX.helpScreen.sprites[0].height * (1-this.scale)/2)) * this.gameScaleRatio;
+      this.x = (this.org.x + (gameGFX.helpScreen.sprites[0].getWidth() * (1-this.scale)/2)) * this.gameScaleRatio;
+      this.y = (this.org.y + (gameGFX.helpScreen.sprites[0].getHeight() * (1-this.scale)/2)) * this.gameScaleRatio;
       gameCntx.translate(this.x, this.y);
       gameCntx.globalAlpha = this.alpha;
       gameGFX.helpScreen.sprites[0].draw(gameCntx, 0, 0, this.gameScaleRatio*this.scale);

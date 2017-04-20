@@ -107,8 +107,8 @@ function EndScreen(gsr){
   this.draw = function(gameCntx){
     if(this.currentState != this.states.off){
       gameCntx.save();
-      this.x = (this.org.x + (gameGFX.endScreen.sprites[0].width * (1-this.scale)/2)) * this.gameScaleRatio;
-      this.y = (this.org.y + (gameGFX.endScreen.sprites[0].height * (1-this.scale)/2)) * this.gameScaleRatio;
+      this.x = (this.org.x + (gameGFX.endScreen.sprites[0].getWidth() * (1-this.scale)/2)) * this.gameScaleRatio;
+      this.y = (this.org.y + (gameGFX.endScreen.sprites[0].getHeight() * (1-this.scale)/2)) * this.gameScaleRatio;
       gameCntx.translate(this.x, this.y);
       gameCntx.globalAlpha = this.alpha;
       gameGFX.endScreen.sprites[0].draw(gameCntx, 0, 0, this.gameScaleRatio*this.scale);
@@ -144,15 +144,15 @@ function EndScreen(gsr){
       var stringScore = getBestScore()+"";
     }
     var start = {
-      x: 218,
+      x: 197,
       y: 205,
     };
     var scoreWidth = 0;
     stringScore = stringScore.split('');
     for(var charCount = 0; charCount <stringScore.length;charCount++){
       var charId = parseInt(stringScore[charCount]);
-      scoreWidth += gameGFX.numbers.sprites[charId].width;
-      scoreHeight = gameGFX.numbers.sprites[charId].height;
+      scoreWidth += gameGFX.numbers.sprites[charId].getWidth();
+      scoreHeight = gameGFX.numbers.sprites[charId].getHeight();
     }
     scoreWidth += (stringScore.length-1) * this.bestScore.gutter;
     var boxHeight = 0;
@@ -161,7 +161,7 @@ function EndScreen(gsr){
     for(var charCount = 0; charCount <stringScore.length;charCount++){
       var charId = parseInt(stringScore[charCount]);
       gameGFX.numbers.sprites[charId].draw(gameCntx, charX * this.bestScore.scale * this.scale * this.gameScaleRatio, start.y * this.bestScore.scale * this.scale * this.gameScaleRatio, this.bestScore.scale * this.scale * this.gameScaleRatio);
-      charX += gameGFX.numbers.sprites[charId].width;
+      charX += gameGFX.numbers.sprites[charId].getWidth();
       charX += this.bestScore.gutter;
     }
   }
@@ -176,8 +176,8 @@ function EndScreen(gsr){
     stringScore = stringScore.split('');
     for(var charCount = 0; charCount <stringScore.length;charCount++){
       var charId = parseInt(stringScore[charCount]);
-      scoreWidth += gameGFX.numbers.sprites[charId].width;
-      scoreHeight = gameGFX.numbers.sprites[charId].height;
+      scoreWidth += gameGFX.numbers.sprites[charId].getWidth();
+      scoreHeight = gameGFX.numbers.sprites[charId].getHeight();
     }
     scoreWidth += (stringScore.length-1) * this.score.gutter;
     var boxHeight = 0;
@@ -186,7 +186,7 @@ function EndScreen(gsr){
     for(var charCount = 0; charCount <stringScore.length;charCount++){
       var charId = parseInt(stringScore[charCount]);
       gameGFX.numbers.sprites[charId].draw(gameCntx, charX * this.score.scale * this.scale * this.gameScaleRatio, start.y * this.score.scale * this.scale * this.gameScaleRatio, this.score.scale * this.scale * this.gameScaleRatio);
-      charX += gameGFX.numbers.sprites[charId].width;
+      charX += gameGFX.numbers.sprites[charId].getWidth();
       charX += this.score.gutter;
     }
   }

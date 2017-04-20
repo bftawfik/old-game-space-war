@@ -83,8 +83,8 @@ function esBtnsMouseDown(e){
 	var replayBtnRect = {
 		x: (game.endScreen.replayBtn.x + game.endScreen.org.x)*game.scaleRatio,
 		y: (game.endScreen.replayBtn.y + game.endScreen.org.y)*game.scaleRatio,
-		endX: gameGFX.endScreen.sprites[game.endScreen.replayBtn.id].width*game.scaleRatio,
-		endY: gameGFX.endScreen.sprites[game.endScreen.replayBtn.id].height*game.scaleRatio,
+		endX: gameGFX.endScreen.sprites[game.endScreen.replayBtn.id].getWidth()*game.scaleRatio,
+		endY: gameGFX.endScreen.sprites[game.endScreen.replayBtn.id].getHeight()*game.scaleRatio,
 	};
 	replayBtnRect.endX += replayBtnRect.x;
 	replayBtnRect.endY += replayBtnRect.y;
@@ -95,8 +95,8 @@ function esBtnsMouseDown(e){
 	var exitBtnRect = {
 		x: (game.endScreen.exitBtn.x + game.endScreen.org.x)*game.scaleRatio,
 		y: (game.endScreen.exitBtn.y + game.endScreen.org.y)*game.scaleRatio,
-		endX: gameGFX.endScreen.sprites[game.endScreen.exitBtn.id].width*game.scaleRatio,
-		endY: gameGFX.endScreen.sprites[game.endScreen.exitBtn.id].height*game.scaleRatio,
+		endX: gameGFX.endScreen.sprites[game.endScreen.exitBtn.id].getWidth()*game.scaleRatio,
+		endY: gameGFX.endScreen.sprites[game.endScreen.exitBtn.id].getHeight()*game.scaleRatio,
 	};
 	exitBtnRect.endX += exitBtnRect.x;
 	exitBtnRect.endY += exitBtnRect.y;
@@ -184,8 +184,8 @@ function hsStartBtnMouseDown(e){
 	var startBtnRect = {
 		x: (game.helpScreen.playBtn.x + game.helpScreen.org.x)*game.scaleRatio,
 		y: (game.helpScreen.playBtn.y + game.helpScreen.org.y)*game.scaleRatio,
-		endX: gameGFX.helpScreen.sprites[1].width*game.scaleRatio,
-		endY: gameGFX.helpScreen.sprites[1].height*game.scaleRatio,
+		endX: gameGFX.helpScreen.sprites[1].getWidth()*game.scaleRatio,
+		endY: gameGFX.helpScreen.sprites[1].getHeight()*game.scaleRatio,
 	};
 	startBtnRect.endX += startBtnRect.x;
 	startBtnRect.endY += startBtnRect.y;
@@ -228,8 +228,8 @@ function ssStartBtnMouseDown(e){
 	var startBtnRect = {
 		x: game.startScreen.playBtn.x,
 		y: game.startScreen.playBtn.y,
-		endX: gameGFX.startScreen.sprites[2].width*game.scaleRatio,
-		endY: gameGFX.startScreen.sprites[2].height*game.scaleRatio,
+		endX: gameGFX.startScreen.sprites[2].getWidth()*game.scaleRatio,
+		endY: gameGFX.startScreen.sprites[2].getHeight()*game.scaleRatio,
 	};
 	startBtnRect.endX += startBtnRect.x;
 	startBtnRect.endY += startBtnRect.y;

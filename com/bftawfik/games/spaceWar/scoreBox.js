@@ -134,16 +134,16 @@ function ScoreBox(gsr){
     stringScore = stringScore.split('');
     for(var charCount = 0; charCount <stringScore.length;charCount++){
       var charId = parseInt(stringScore[charCount]);
-      scoreWidth += (gameGFX.numbers.sprites[charId].width * this.score.scale);
-      scoreHeight = gameGFX.numbers.sprites[charId].height * this.score.scale;
+      scoreWidth += (gameGFX.numbers.sprites[charId].getWidth() * this.score.scale);
+      scoreHeight = gameGFX.numbers.sprites[charId].getHeight() * this.score.scale;
       //gameGFX.numbers.sprites[char].draw(gameCntx, char_x, char_y, 0.6);
 
     }
     //console.log(scoreWidth);
     scoreWidth += (stringScore.length-1) * (this.score.gutter * this.score.scale);
     //console.log(scoreWidth);
-    var boxWidth = gameGFX.gameScreen.sprites[this.id].width * this.scale;
-    var boxHeight = gameGFX.gameScreen.sprites[this.id].height * this.scale;
+    var boxWidth = gameGFX.gameScreen.sprites[this.id].getWidth() * this.scale;
+    var boxHeight = gameGFX.gameScreen.sprites[this.id].getHeight() * this.scale;
     start.x += (boxWidth-scoreWidth)/2;
     start.y += (boxHeight - scoreHeight)/2;
     var charX = start.x;
@@ -151,7 +151,7 @@ function ScoreBox(gsr){
         var charId = parseInt(stringScore[charCount]);
         //console.log(charId);
       gameGFX.numbers.sprites[charId].draw(gameCntx, charX * this.gameScaleRatio, start.y * this.gameScaleRatio,this.score.scale * this.gameScaleRatio);
-      charX += gameGFX.numbers.sprites[charId].width * this.score.scale;
+      charX += gameGFX.numbers.sprites[charId].getWidth() * this.score.scale;
       charX += this.score.gutter * this.score.scale;
     }
   }
