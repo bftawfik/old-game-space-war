@@ -101,8 +101,8 @@ function GameScreen(gsr, gameCntx){
             var enemyPos = {
               x:tempEnemy.x*this.gameScaleRatio,
               y:tempEnemy.y*this.gameScaleRatio,
-              width:gameGFX.gameScreen.sprites[tempEnemy.id].width * this.gameScaleRatio * tempEnemy.scale,
-              height:gameGFX.gameScreen.sprites[tempEnemy.id].height * this.gameScaleRatio * tempEnemy.scale,
+              width:gameGFX.gameScreen.sprites[tempEnemy.id].getWidth() * this.gameScaleRatio * tempEnemy.scale,
+              height:gameGFX.gameScreen.sprites[tempEnemy.id].getHeight() * this.gameScaleRatio * tempEnemy.scale,
             }
             if(this.chickCollide(ballPos, enemyPos)){
               this.ball.hitCount = (this.ball.hitCount+1) % this.ball.speedIncHitCount;

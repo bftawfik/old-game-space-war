@@ -39,6 +39,13 @@ function AutoResize(direction){
   //-----------------------------------------------------------
   this.resize = function() {
     console.log('resize');
+    if(getOrientation() == this.direction){
+      game.rightOrientation = true;
+  		console.log(true);
+  	}else{
+      game.rightOrientation = false;
+  		console.log(false);
+  	}
     if(this.direction == this.allDirections.portrait){
       var newHeight = window.innerHeight;
       var newWidth = newHeight * this.ratio;

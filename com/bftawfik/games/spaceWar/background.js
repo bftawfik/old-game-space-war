@@ -83,8 +83,8 @@ function Background(gsr){
     this.gameScaleRatio = gsr;
     this.dTime = dTime;
     if(this.currentState != this.states.off){
-      this.bg0.x = (this.bg0.x - this.bg0.velocity) % (gameGFX.background.sprites[0].width);
-      this.bg1.x = (this.bg1.x + this.bg1.velocity) % (gameGFX.background.sprites[0].width);
+      this.bg0.x = (this.bg0.x - this.bg0.velocity) % (gameGFX.background.sprites[0].getWidth());
+      this.bg1.x = (this.bg1.x + this.bg1.velocity) % (gameGFX.background.sprites[0].getWidth());
       this.bg1.alpha.angle = (this.bg1.alpha.angle + this.bg1.alpha.angleIncr) % 360;
       this.bg1.alpha.currentAlpha = (Math.sin((Math.PI / 180) * this.bg1.alpha.angle)+1)/2;
       this.bg1.alpha.currentAlpha = this.bg1.alpha.currentAlpha * this.bg1.alpha.totalIncr;
@@ -115,12 +115,12 @@ function Background(gsr){
     gameCntx.fillRect(0,0,gameCntx.canvas.width,gameCntx.canvas.height);
     //--
     gameGFX.background.sprites[0].draw(gameCntx, (this.bg0.x *this.gameScaleRatio), (this.bg0.y*this.gameScaleRatio), this.gameScaleRatio);
-    gameGFX.background.sprites[0].draw(gameCntx, (this.bg0.x*this.gameScaleRatio) + (gameGFX.background.sprites[0].width*this.gameScaleRatio), (this.bg0.y*this.gameScaleRatio), this.gameScaleRatio);
+    gameGFX.background.sprites[0].draw(gameCntx, (this.bg0.x*this.gameScaleRatio) + (gameGFX.background.sprites[0].getWidth()*this.gameScaleRatio), (this.bg0.y*this.gameScaleRatio), this.gameScaleRatio);
     //--
     gameCntx.save();
     gameCntx.globalAlpha = this.bg1.alpha.currentAlpha;
     gameGFX.background.sprites[1].draw(gameCntx, (this.bg1.x*this.gameScaleRatio), (this.bg1.y*this.gameScaleRatio), this.gameScaleRatio);
-    gameGFX.background.sprites[1].draw(gameCntx, (this.bg1.x*this.gameScaleRatio) - (gameGFX.background.sprites[1].width*this.gameScaleRatio), (this.bg1.y*this.gameScaleRatio), this.gameScaleRatio);
+    gameGFX.background.sprites[1].draw(gameCntx, (this.bg1.x*this.gameScaleRatio) - (gameGFX.background.sprites[1].getWidth()*this.gameScaleRatio), (this.bg1.y*this.gameScaleRatio), this.gameScaleRatio);
     gameCntx.restore();
     //--
     gameCntx.save();

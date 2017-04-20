@@ -38,7 +38,7 @@ function Enemy(gsr, pos){
   this.alpha =1;
   this.show = {
     currentTime: 0,
-    duration: 1,
+    duration: 0.4,
     startPos:{
       x: 171,
       y: -100,
@@ -119,8 +119,8 @@ function Enemy(gsr, pos){
     if(this.currentState != this.states.off){
       if(this.currentState == this.states.wayToDistory){
         gameCntx.save();
-        this.x = (this.org.x + (gameGFX.gameScreen.sprites[this.id].width * (1-this.scale)/2)) * this.gameScaleRatio;
-        this.y = (this.org.y + (gameGFX.gameScreen.sprites[this.id].height * (1-this.scale)/2)) * this.gameScaleRatio;
+        this.x = (this.org.x + (gameGFX.gameScreen.sprites[this.id].getWidth() * (1-this.scale)/2)) * this.gameScaleRatio;
+        this.y = (this.org.y + (gameGFX.gameScreen.sprites[this.id].getHeight() * (1-this.scale)/2)) * this.gameScaleRatio;
         gameCntx.translate(this.x, this.y);
         gameCntx.globalAlpha = this.alpha;
         gameGFX.gameScreen.sprites[this.id].draw(gameCntx, 0, 0, this.gameScaleRatio*this.scale);
