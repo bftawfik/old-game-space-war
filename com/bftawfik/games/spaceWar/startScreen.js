@@ -119,7 +119,7 @@ function StartScreen(gsr){
     },
     hide:{
       currentTime: 0,
-      duration: 2,
+      duration: 1,
       startPos:{
         x: 291,
         y: 426,
@@ -131,7 +131,7 @@ function StartScreen(gsr){
     },
   };
   this.rocket1 = {
-    x: -14,
+    x: -20,
     y: 395,
     scale: 1,
     vipe:{
@@ -144,7 +144,7 @@ function StartScreen(gsr){
       currentTime: 0,
       duration: 1.8,
       startPos:{
-        x: -14,
+        x: -20,
         y: 795,
       },
       distance:{
@@ -154,9 +154,9 @@ function StartScreen(gsr){
     },
     hide:{
       currentTime: 0,
-      duration: 1.5,
+      duration: 1,
       startPos:{
-        x: -14,
+        x: -20,
         y: 395,
       },
       distance:{
@@ -233,18 +233,18 @@ function StartScreen(gsr){
       gameGFX.startScreen.sprites[1].draw(gameCntx, (this.title1.x*this.gameScaleRatio), (this.title1.y*this.gameScaleRatio), this.gameScaleRatio);
       //--
       gameCntx.save();
-      this.playBtn.x = (this.playBtn.org.x + (gameGFX.startScreen.sprites[2].width * (1-this.playBtn.scale)/2)) * this.gameScaleRatio;
-      this.playBtn.y = (this.playBtn.org.y + (gameGFX.startScreen.sprites[2].height * (1-this.playBtn.scale)/2)) * this.gameScaleRatio;
+      this.playBtn.x = (this.playBtn.org.x + (gameGFX.startScreen.sprites[2].getWidth() * (1-this.playBtn.scale)/2)) * this.gameScaleRatio;
+      this.playBtn.y = (this.playBtn.org.y + (gameGFX.startScreen.sprites[2].getHeight() * (1-this.playBtn.scale)/2)) * this.gameScaleRatio;
       gameCntx.translate(this.playBtn.x, this.playBtn.y);
       gameCntx.globalAlpha = this.playBtn.alpha;
       gameGFX.startScreen.sprites[this.playBtn.id].draw(gameCntx, 0, 0, this.gameScaleRatio*this.playBtn.scale);
       gameCntx.restore();
       // gameGFX.startScreen.sprites[3].draw(gameCntx, (this.playBtn.x*this.gameScaleRatio), (this.playBtn.y*this.gameScaleRatio), this.gameScaleRatio);
       //--
-      gameGFX.rocket.sprites[0].draw(gameCntx, (this.rocket0.x*this.gameScaleRatio), ((this.rocket0.y+(this.rocket0.vipe.y*this.rocket0.scale) -(Math.random()*20*this.rocket0.scale))*this.gameScaleRatio), this.gameScaleRatio*this.rocket0.scale);
+      gameGFX.rocket.sprites[0].draw(gameCntx, (this.rocket0.x*this.gameScaleRatio), ((this.rocket0.y+(this.rocket0.vipe.y*this.rocket0.scale) -(Math.random()*5*this.rocket0.scale))*this.gameScaleRatio), this.gameScaleRatio*this.rocket0.scale);
       gameGFX.rocket.sprites[1].draw(gameCntx, (this.rocket0.x*this.gameScaleRatio), ((this.rocket0.y+(this.rocket0.vipe.y*this.rocket0.scale))*this.gameScaleRatio), this.gameScaleRatio*this.rocket0.scale);
       //--
-      gameGFX.rocket.sprites[0].draw(gameCntx, (this.rocket1.x*this.gameScaleRatio), ((this.rocket1.y+(this.rocket1.vipe.y*this.rocket1.scale) -(Math.random()*20*this.rocket1.scale))*this.gameScaleRatio), this.gameScaleRatio*this.rocket1.scale);
+      gameGFX.rocket.sprites[0].draw(gameCntx, (this.rocket1.x*this.gameScaleRatio), ((this.rocket1.y+(this.rocket1.vipe.y*this.rocket1.scale) -(Math.random()*5*this.rocket1.scale))*this.gameScaleRatio), this.gameScaleRatio*this.rocket1.scale);
       gameGFX.rocket.sprites[1].draw(gameCntx, (this.rocket1.x*this.gameScaleRatio), ((this.rocket1.y+(this.rocket1.vipe.y*this.rocket1.scale))*this.gameScaleRatio), this.gameScaleRatio*this.rocket1.scale);
     }
   };

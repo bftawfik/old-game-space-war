@@ -106,7 +106,7 @@ function Defender(gsr){
       },
       distance:{
         x:0,
-        y:100,
+        y:150,
       },
     },
   };
@@ -161,10 +161,10 @@ function Defender(gsr){
     if(this.currentState != this.states.off){
       gameGFX.gameScreen.sprites[6].draw2(gameCntx, (this.bar.x*this.gameScaleRatio), this.bar.y*this.gameScaleRatio,   this.bar.width, 0, this.gameScaleRatio*this.bar.scale);
       //--
-      gameGFX.rocket.sprites[0].draw(gameCntx, (this.rocket0.x*this.gameScaleRatio), (this.rocket0.y*this.gameScaleRatio), this.gameScaleRatio*this.rocket0.scale);
+      gameGFX.rocket.sprites[0].draw(gameCntx, (this.rocket0.x*this.gameScaleRatio), (this.rocket0.y*this.gameScaleRatio) - (Math.random()*20*this.rocket0.scale), this.gameScaleRatio*this.rocket0.scale);
       gameGFX.rocket.sprites[1].draw(gameCntx, this.rocket0.x*this.gameScaleRatio, this.rocket0.y*this.gameScaleRatio, this.gameScaleRatio*this.rocket0.scale);
       //--
-      gameGFX.rocket.sprites[0].draw(gameCntx, (this.rocket1.x*this.gameScaleRatio), (this.rocket1.y*this.gameScaleRatio), this.gameScaleRatio*this.rocket1.scale);
+      gameGFX.rocket.sprites[0].draw(gameCntx, (this.rocket1.x*this.gameScaleRatio), (this.rocket1.y*this.gameScaleRatio) - (Math.random()*20*this.rocket1.scale), this.gameScaleRatio*this.rocket1.scale);
       gameGFX.rocket.sprites[1].draw(gameCntx, this.rocket1.x*this.gameScaleRatio, this.rocket1.y*this.gameScaleRatio, this.gameScaleRatio*this.rocket1.scale);
       //--
     }
@@ -206,7 +206,7 @@ function Defender(gsr){
     this.rocket0.hide.startPos.x = this.rocket0.x;
     this.rocket0.hide.startPos.y = this.rocket0.y;
     //--
-    this.rocket1.x = this.hitArea.x + this.hitArea.width - (gameGFX.rocket.sprites[1].width*this.rocket1.scale);
+    this.rocket1.x = this.hitArea.x + this.hitArea.width - (gameGFX.rocket.sprites[1].getWidth()*this.rocket1.scale);
     this.rocket1.y = (this.hitArea.y-10);
     this.rocket1.show.startPos.x = this.rocket1.x;
     this.rocket1.show.startPos.y = this.rocket1.y - this.rocket1.show.distance.y;
@@ -214,7 +214,7 @@ function Defender(gsr){
     this.rocket1.hide.startPos.y = this.rocket1.y;
     //--
     this.bar.width = this.hitArea.width-20;
-    this.bar.x = this.hitArea.x + (gameGFX.rocket.sprites[1].width*this.rocket1.scale/2);
+    this.bar.x = this.hitArea.x + (gameGFX.rocket.sprites[1].getWidth()*this.rocket1.scale/2);
     this.bar.y = this.hitArea.y;
     this.bar.show.startPos.x = this.bar.x;
     this.bar.show.startPos.y = this.bar.y - this.bar.show.distance.y;
@@ -224,7 +224,7 @@ function Defender(gsr){
     //console.log(this.ball.currentState);
     if(this.ball.currentState == this.ball.states.attached){
       //-------
-      this.ball.x = this.hitArea.x + (this.hitArea.width/2) - (gameGFX.gameScreen.sprites[5].width/2);
+      this.ball.x = this.hitArea.x + (this.hitArea.width/2) - (gameGFX.gameScreen.sprites[5].getWidth()/2);
       this.ball.y = this.hitArea.y - 10 - (this.hitArea.height*1.5);
     }
   }

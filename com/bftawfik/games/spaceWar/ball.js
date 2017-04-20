@@ -8,7 +8,7 @@ function Ball(gsr, gameCntx){
   this.currentState = 'off';
   this.radius = 15/2;
   this.velocity = 7;
-  this.velocityIncr = 1.02;
+  this.velocityIncr = 1.03;
   this.angle = 330;
   this.vx = 0;
   this.vy = 0;

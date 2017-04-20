@@ -2,24 +2,31 @@
 //---------------------------------------------------------------
 //---------------------------------------------------------------
 function Sprite(img, x, y, width, height) {
+	this.sizefactor = 2;
 	this.img = img;
-	this.x = x;
-	this.y = y;
-	this.width = width;
-	this.height = height;
+	this.x = x*this.sizefactor;
+	this.y = y*this.sizefactor;
+	this.width = width*this.sizefactor;
+	this.height = height*this.sizefactor;
+	this.getWidth = function(){
+		return this.width/this.sizefactor;
+	}
+	this.getHeight = function(){
+		return this.height/this.sizefactor;
+	}
 };
 //---------------------------------------------------------------
 Sprite.prototype.draw = function(ctx, x, y, scale=1) {
 	ctx.drawImage(this.img, this.x, this.y, this.width, this.height,
-		x, y, (this.width*scale), (this.height*scale));
+		x, y, ((this.width/this.sizefactor)*scale), ((this.height/this.sizefactor)*scale));
 };
 //---------------------------------------------------------------
 Sprite.prototype.draw2 = function(ctx, x, y, width=0, height=0, scale=1) {
 	if(width == 0){
-		width = this.width;
+		width = (this.width/this.sizefactor);
 	}
 	if(height == 0){
-		height = this.height;
+		height = (this.height/this.sizefactor);
 	}
 	ctx.drawImage(this.img, this.x, this.y, this.width, this.height,
 		x, y, (width*scale), (height*scale));
@@ -51,6 +58,12 @@ function createGameSprites(img){
 			new Sprite(img, 416, 267, 234, 408),
 		],
   };
+	gameGFX.smallRocket = {
+		sprites:[
+			new Sprite(img, 668, 615, 19, 33),
+			new Sprite(img, 668, 580, 19, 33),
+		],
+  };
 	gameGFX.helpScreen = {
 		sprites:[
 			new Sprite(img, 416, 1089, 308, 275),
@@ -66,7 +79,7 @@ function createGameSprites(img){
 			new Sprite(img, 668, 254, 70, 16),
 			new Sprite(img, 668, 272, 70, 16),
 			new Sprite(img, 668, 290, 15, 15),
-			new Sprite(img, 686, 290, 82, 6),
+			new Sprite(img, 685.5, 292, 82, 4),
 			new Sprite(img, 740, 200, 120, 33),
 			new Sprite(img, 740, 235, 70, 16),
 		],

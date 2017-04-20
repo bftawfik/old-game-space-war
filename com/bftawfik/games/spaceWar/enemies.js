@@ -24,8 +24,8 @@ function Enemies(gsr){
   //---------------------------------------------------------------
   this.initEnemiesArray = function(enemiesNumber){
     for(var enemCount=0; enemCount<enemiesNumber; enemCount++){
-      var tempX = this.leftMargin + ((enemCount%this.countPerRow)*(gameGFX.gameScreen.sprites[0].width+this.gutter));
-      var tempY = this.topMargin+(Math.floor(enemCount/this.countPerRow)*(gameGFX.gameScreen.sprites[0].height+this.gutter));
+      var tempX = this.leftMargin + ((enemCount%this.countPerRow)*(gameGFX.gameScreen.sprites[0].getWidth() + this.gutter));
+      var tempY = this.topMargin+(Math.floor(enemCount/this.countPerRow)*(gameGFX.gameScreen.sprites[0].getHeight() + this.gutter));
       var tempEnemy = new Enemy(this.gameScaleRatio,{x:tempX, y:tempY});
       this.enemiesArray.push(tempEnemy);
     }
@@ -153,7 +153,7 @@ function Enemies(gsr){
       for(var enemCount=0; enemCount<this.enemiesArray.length; enemCount++){
         var tempEnemy = this.enemiesArray[enemCount];
         if(tempEnemy.currentState == tempEnemy.states.on){
-          var tempY = gameGFX.gameScreen.sprites[0].height+this.gutter;
+          var tempY = gameGFX.gameScreen.sprites[0].getHeight() + this.gutter;
           tempEnemy.y += tempY;
         }
       }
@@ -166,7 +166,7 @@ function Enemies(gsr){
             break;
           }
         }
-        var newX = this.leftMargin + (rowEnemCount*(gameGFX.gameScreen.sprites[0].width + this.gutter));
+        var newX = this.leftMargin + (rowEnemCount*(gameGFX.gameScreen.sprites[0].getWidth() + this.gutter));
         var newY = this.topMargin;
         var newEnemy = new Enemy(this.gameScaleRatio,{x:newX, y:newY});
         if(emptyPlaceFound > -1){
