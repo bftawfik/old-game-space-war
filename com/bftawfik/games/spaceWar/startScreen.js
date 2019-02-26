@@ -95,6 +95,46 @@ function StartScreen(gsr){
       endAlpha: -1,
     },
   };
+  this.soundBtn = {
+    id:0,
+    x: 348,
+    y: 664,
+    scale: 0,
+    alpha: 0,
+    state: 'mouseUp',
+    org:{
+      x: 348,
+      y: 664,
+    },
+    scale: 1,
+    on:{
+      scale: 1,
+      alpha: 1,
+    },
+    off:{
+      scale: 0,
+      alpha: 0,
+    },
+    show:{
+      currentTime: 0,
+      duration: 1,
+      startScale: 0,
+      endScale: 1,
+      startAlpha: 0,
+      endAlpha: 1,
+    },
+    hide:{
+      currentTime: 0,
+      duration: 1,
+      startScale: 1,
+      endScale: -1,
+      startAlpha: 1,
+      endAlpha: -1,
+    },
+  };
+  if(audios.enabled == 0){
+    this.soundBtn.id = 2;
+  }
   this.rocket0 = {
     x: 291,
     y: 426,
@@ -183,7 +223,7 @@ function StartScreen(gsr){
         this.currentState =  this.states.show;
       break;
       case(this.states.hide):
-        deactivate_ssStartBtn();
+        deactivate_ssBtns();
         this.currentState =  this.states.hide;
       break;
     }
@@ -207,16 +247,18 @@ function StartScreen(gsr){
           this.moveWithEase(this.title0, "show");
           this.moveWithEase(this.title1, "show");
           this.scaleAlphaWithEase(this.playBtn, "show");
+          this.scaleAlphaWithEase(this.soundBtn, "show");
           this.moveWithEase(this.rocket1, "show");
           if(this.moveWithEase(this.rocket0, "show")){
             this.currentState = this.states.on;
-            activate_ssStartBtn();
+            activate_ssBtns();
           };
         break;
         case(this.states.hide):
           this.moveWithEase(this.title0, "hide");
           this.moveWithEase(this.title1, "hide");
           this.scaleAlphaWithEase(this.playBtn, "hide");
+          this.scaleAlphaWithEase(this.soundBtn, "hide");
           this.moveWithEase(this.rocket1, "hide");
           if(this.moveWithEase(this.rocket0, "hide")){
             this.currentState = this.states.off;
@@ -238,6 +280,14 @@ function StartScreen(gsr){
       gameCntx.translate(this.playBtn.x, this.playBtn.y);
       gameCntx.globalAlpha = this.playBtn.alpha;
       gameGFX.startScreen.sprites[this.playBtn.id].draw(gameCntx, 0, 0, this.gameScaleRatio*this.playBtn.scale);
+      gameCntx.restore();
+      //--
+      gameCntx.save();
+      this.soundBtn.x = (this.soundBtn.org.x + (gameGFX.soundBtn.sprites[0].getWidth() * (1-this.soundBtn.scale)/2)) * this.gameScaleRatio;
+      this.soundBtn.y = (this.soundBtn.org.y + (gameGFX.soundBtn.sprites[0].getHeight() * (1-this.soundBtn.scale)/2)) * this.gameScaleRatio;
+      gameCntx.translate(this.soundBtn.x, this.soundBtn.y);
+      gameCntx.globalAlpha = this.soundBtn.alpha;
+      gameGFX.soundBtn.sprites[this.soundBtn.id].draw(gameCntx, 0, 0, this.gameScaleRatio*this.soundBtn.scale);
       gameCntx.restore();
       // gameGFX.startScreen.sprites[3].draw(gameCntx, (this.playBtn.x*this.gameScaleRatio), (this.playBtn.y*this.gameScaleRatio), this.gameScaleRatio);
       //--

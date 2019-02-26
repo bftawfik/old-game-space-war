@@ -12,7 +12,6 @@ var score = 0;
 var bestScore = 0;
 var drawFix = new Object();
 var currentTime = new Date();
-var n = 'BFTawfikSpaceWarV1.3';
 //---------------------------------------------------------------
 //---------------------------------------------------------------
 //---------------------------------------------------------------
@@ -32,42 +31,6 @@ window.requestAnimFrame = (function(){
 function checkIfMobilePhone(){
   isMobilePhone = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   return isMobilePhone;
-}
-//---------------------------------------------------------------
-function getOrientation(){
-	if(checkIfMobilePhone()){
-		return screen.orientation.type.match(/\w+/)[0];
-	}
-	return game.orientation;
-}
-//---------------------------------------------------------------
-//---------------------------------------------------------------
-//---------------------------------------------------------------
-function retrieveBestScore(gameName){
-  if (typeof(Storage) !== "undefined") {
-		console.log(localStorage.getItem(gameName));
-    var myGame = JSON.parse(localStorage.getItem(gameName)) || {date: +new Date(), bestScore: 0};
-    return myGame.bestScore;
-  }
-  return 0;
-}
-//---------------------------------------------------------------
-function storeBestScore(userS, gameName){
-  if (typeof(Storage) !== "undefined") {
-    var myGame = JSON.parse(localStorage.getItem(gameName)) || {date: +new Date(), bestScore: 0};
-    if(myGame.date <= +new Date()){
-      if(userS > myGame.bestScore){
-        myGame.date = +new Date();
-        myGame.bestScore = userS;
-        console.log(localStorage.getItem(gameName));
-        localStorage.setItem( gameName, JSON.stringify(myGame));
-        console.log(localStorage.getItem(gameName));
-        console.log("data Changed");
-      }
-    }
-    return true;
-  }
-  return false;
 }
 //---------------------------------------------------------------
 //---------------------------------------------------------------
@@ -290,97 +253,87 @@ function activate_ssStartBtn(){
 //---------------------------------------------------------------
 //---------------------------------------------------------------
 function render(){
-	if(game.rightOrientation){
-		$('#orientDiv').css({"display": "none"});
-		gameCntx.clearRect(0,0, gameCnvs.width, gameCnvs.height);
-		switch(game.currentState){
-			case(game.states.show_StartScreen):
-				game.background.draw(gameCntx);
-				game.startScreen.draw(gameCntx);
-			break;
-			case(game.states.show_HelpScreen):
-				game.background.draw(gameCntx);
-				game.startScreen.draw(gameCntx);
-				game.helpScreen.draw(gameCntx);
-			break;
-			case(game.states.show_GameScreen):
-				game.background.draw(gameCntx);
-				game.helpScreen.draw(gameCntx);
-				game.gameScreen.draw(gameCntx);
-			break;
-			case(game.states.gameOn):
-				game.background.draw(gameCntx);
-				game.gameScreen.draw(gameCntx);
-			break;
-			case(game.states.gameOver):
-				game.background.draw(gameCntx);
-				game.gameScreen.draw(gameCntx);
-				game.endScreen.draw(gameCntx);
-			break;
-			case(game.states.replayGame):
-				game.background.draw(gameCntx);
-				game.endScreen.draw(gameCntx);
-				game.helpScreen.draw(gameCntx);
-			break;
-			case(game.states.reinitiateGame):
-				game.background.draw(gameCntx);
-				game.endScreen.draw(gameCntx);
-				game.startScreen.draw(gameCntx);
-			break;
-		}
-	}else{
-		$('#orientDiv').css({"display": "inline"});
+	gameCntx.clearRect(0,0, gameCnvs.width, gameCnvs.height);
+	switch(game.currentState){
+		case(game.states.show_StartScreen):
+			game.background.draw(gameCntx);
+			game.startScreen.draw(gameCntx);
+		break;
+		case(game.states.show_HelpScreen):
+			game.background.draw(gameCntx);
+			game.startScreen.draw(gameCntx);
+			game.helpScreen.draw(gameCntx);
+		break;
+		case(game.states.show_GameScreen):
+			game.background.draw(gameCntx);
+			game.helpScreen.draw(gameCntx);
+			game.gameScreen.draw(gameCntx);
+		break;
+		case(game.states.gameOn):
+			game.background.draw(gameCntx);
+			game.gameScreen.draw(gameCntx);
+		break;
+		case(game.states.gameOver):
+			game.background.draw(gameCntx);
+			game.gameScreen.draw(gameCntx);
+			game.endScreen.draw(gameCntx);
+		break;
+		case(game.states.replayGame):
+			game.background.draw(gameCntx);
+			game.endScreen.draw(gameCntx);
+			game.helpScreen.draw(gameCntx);
+		break;
+		case(game.states.reinitiateGame):
+			game.background.draw(gameCntx);
+			game.endScreen.draw(gameCntx);
+			game.startScreen.draw(gameCntx);
+		break;
 	}
 }
 //---------------------------------------------------------------
 function update(){
-	if(game.rightOrientation){
-		var now  = new Date();
-		var dTime = (now.getTime()-currentTime.getTime())/1000 ;
-		currentTime = now;
-		game.currentFrame++;
-		switch(game.currentState){
-			case(game.states.show_StartScreen):
-				game.background.update(game.scaleRatio);
-				game.startScreen.update(game.scaleRatio, dTime);
-			break;
-			case(game.states.show_HelpScreen):
-				game.background.update(game.scaleRatio, dTime);
-				game.startScreen.update(game.scaleRatio, dTime);
-				game.helpScreen.update(game.scaleRatio, dTime);
-			break;
-			case(game.states.show_GameScreen):
-				game.background.update(game.scaleRatio);
-				game.helpScreen.update(game.scaleRatio, dTime);
-				game.gameScreen.update(game.scaleRatio, dTime, game.mousePos);
-				if(game.gameScreen.currentState == game.gameScreen.states.on){
-					changeGameState(game.states.gameOn);
-					activate_defenderClick();
-				}
-			break;
-			case(game.states.gameOn):
-				game.background.update(game.scaleRatio);
-				game.gameScreen.update(game.scaleRatio, dTime, game.mousePos);
-			break;
-			case(game.states.gameOver):
-				game.background.update(game.scaleRatio);
-				game.gameScreen.update(game.scaleRatio, dTime, game.mousePos);
-				game.endScreen.update(game.scaleRatio, dTime);
-			break;
-			case(game.states.replayGame):
-				game.background.update(game.scaleRatio);
-				game.endScreen.update(game.scaleRatio, dTime);
-				game.helpScreen.update(game.scaleRatio, dTime);
-			break;
-			case(game.states.reinitiateGame):
-				game.background.update(game.scaleRatio);
-				game.endScreen.update(game.scaleRatio, dTime);
-				game.startScreen.update(game.scaleRatio, dTime);
-			break;
-		}
-	}else{
-		game.orientImgMarginTop = (parseInt($('#orientDiv').css("height")) - parseInt($('#orientDiv img').css("height")))/2;
-		$('#orientDiv img').css({"margin-top": game.orientImgMarginTop+"px"});
+	var now  = new Date();
+	var dTime = (now.getTime()-currentTime.getTime())/1000 ;
+	currentTime = now;
+	game.currentFrame++;
+	switch(game.currentState){
+		case(game.states.show_StartScreen):
+			game.background.update(game.scaleRatio);
+			game.startScreen.update(game.scaleRatio, dTime);
+		break;
+		case(game.states.show_HelpScreen):
+			game.background.update(game.scaleRatio, dTime);
+			game.startScreen.update(game.scaleRatio, dTime);
+			game.helpScreen.update(game.scaleRatio, dTime);
+		break;
+		case(game.states.show_GameScreen):
+			game.background.update(game.scaleRatio);
+			game.helpScreen.update(game.scaleRatio, dTime);
+			game.gameScreen.update(game.scaleRatio, dTime, game.mousePos);
+			if(game.gameScreen.currentState == game.gameScreen.states.on){
+				changeGameState(game.states.gameOn);
+				activate_defenderClick();
+			}
+		break;
+		case(game.states.gameOn):
+			game.background.update(game.scaleRatio);
+			game.gameScreen.update(game.scaleRatio, dTime, game.mousePos);
+		break;
+		case(game.states.gameOver):
+			game.background.update(game.scaleRatio);
+			game.gameScreen.update(game.scaleRatio, dTime, game.mousePos);
+			game.endScreen.update(game.scaleRatio, dTime);
+		break;
+		case(game.states.replayGame):
+			game.background.update(game.scaleRatio);
+			game.endScreen.update(game.scaleRatio, dTime);
+			game.helpScreen.update(game.scaleRatio, dTime);
+		break;
+		case(game.states.reinitiateGame):
+			game.background.update(game.scaleRatio);
+			game.endScreen.update(game.scaleRatio, dTime);
+			game.startScreen.update(game.scaleRatio, dTime);
+		break;
 	}
 }
 //---------------------------------------------------------------
@@ -436,10 +389,6 @@ function changeGameState(gameState){
 		case(game.states.gameOver):
 			if(game.currentState == game.states.gameOn){
 				game.currentState = game.states.gameOver;
-				if(score > bestScore){
-					bestScore = score;
-				}
-				console.log(storeBestScore(bestScore, n));
 				game.gameScreen.changeState(game.gameScreen.states.hide);
 				game.endScreen.changeState(game.endScreen.states.show);
 			}
@@ -507,12 +456,6 @@ function createGameClasses(){
 		reinitiateGame: "reinitiateGame",
   };
   game.currentState = 'off';
-	game.orientation = "portrait";
-	if(getOrientation() == game.orientation){
-		game.rightOrientation = true;
-	}else{
-		game.rightOrientation = false;
-	}
   game.background = new Background(game.scaleRatio, this);
 	game.startScreen = new StartScreen(game.scaleRatio);
 	game.helpScreen = new HelpScreen(game.scaleRatio);
@@ -559,10 +502,6 @@ function createGameCanvas(){
 function initGame(){
 	console.log('initGame');
 	//--
-	var localBestScore = retrieveBestScore(n);
-	if(localBestScore > bestScore){
-		bestScore = localBestScore;
-	}
 	drawFix.now = new Date();
 	drawFix.currentMS = drawFix.now.getMilliseconds();
 	drawFix.currentSecond = 0;

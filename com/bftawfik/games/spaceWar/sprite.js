@@ -52,6 +52,14 @@ function createGameSprites(img){
 			new Sprite(img, 542, 136, 124, 129),
 		],
   };
+	gameGFX.soundBtn = {
+		sprites:[
+			new Sprite(img, 740, 447, 48, 65),
+			new Sprite(img, 740, 514, 48, 65),
+			new Sprite(img, 790, 447, 48, 65),
+			new Sprite(img, 790, 514, 48, 65),
+		],
+  };
 	gameGFX.rocket = {
 		sprites:[
 			new Sprite(img, 416, 677, 234, 408),

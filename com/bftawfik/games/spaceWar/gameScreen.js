@@ -81,6 +81,7 @@ function GameScreen(gsr, gameCntx){
     };
     //console.log(defenderPos);
     if(this.chickCollide(ballPos, defenderPos)){
+      audios.playBarBounceSound();
       this.ball.hitCount = (this.ball.hitCount+1) % this.ball.speedIncHitCount;
       this.defender.hitCount++;
       this.defender.hitCount = this.defender.hitCount % this.defender.decayHitCount;
@@ -111,6 +112,7 @@ function GameScreen(gsr, gameCntx){
               //this.ball.velocity *= this.ball.velocityIncr;
               //this.ball.currentState = this.ball.states.on;
               this.enemies.removeEnemyNo(enemCount);
+              audios.playBrickBounceSound();
               break;
             }
           }

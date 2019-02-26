@@ -91,16 +91,19 @@ function Ball(gsr, gameCntx){
             this.x = (this.gameCntx.canvas.width / this.gameScaleRatio) - (this.radius*2);
             this.angle = (this.angle * -1)+180;
             this.hitCount = (this.hitCount+1) % this.speedIncHitCount;
+            audios.playWallBounceSound();
           }
           if((this.x*this.gameScaleRatio) < 0){
             this.x = 0;
             this.angle = (this.angle * -1)+180;
             this.hitCount = (this.hitCount+1) % this.speedIncHitCount;
+            audios.playWallBounceSound();
           }
           if((this.y*this.gameScaleRatio)< 0){
             this.y = 0;
             this.angle = (this.angle * -1)+360;
             this.hitCount = (this.hitCount+1) % this.speedIncHitCount;
+            audios.playWallBounceSound();
           }
           if(this.y*this.gameScaleRatio> this.gameCntx.canvas.height){
             //console.log('game Over');

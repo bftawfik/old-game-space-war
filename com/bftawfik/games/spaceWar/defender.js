@@ -85,6 +85,7 @@ function Defender(gsr){
     y: 650,
     count: 10,
     scale: 1,
+    alpha: 0,
     show:{
       currentTime: 0,
       duration: 2,
@@ -133,6 +134,7 @@ function Defender(gsr){
       this.dTime = dTime;
       this.mousePos = mousePos;
       this.mousePos.y = 640;
+      this.bar.alpha = Math.random();
       switch(this.currentState){
         case(this.states.on):
           if(this.mousePos.x && this.mousePos.y){
@@ -149,9 +151,9 @@ function Defender(gsr){
           }
         break;
         case(this.states.hide):
-        this.moveWithEase(this.rocket0, "hide");
-        this.moveWithEase(this.rocket1, "hide");
-        this.moveWithEase(this.bar, "hide");
+          this.moveWithEase(this.rocket0, "hide");
+          this.moveWithEase(this.rocket1, "hide");
+          this.moveWithEase(this.bar, "hide");
         break;
       }
     }
@@ -159,7 +161,10 @@ function Defender(gsr){
   //---------------------------------------------------------------
   this.draw = function(gameCntx){
     if(this.currentState != this.states.off){
+      gameCntx.save();
+      gameCntx.globalAlpha = this.bar.alpha;
       gameGFX.gameScreen.sprites[6].draw2(gameCntx, (this.bar.x*this.gameScaleRatio), this.bar.y*this.gameScaleRatio,   this.bar.width, 0, this.gameScaleRatio*this.bar.scale);
+      gameCntx.restore();
       //--
       gameGFX.rocket.sprites[0].draw(gameCntx, (this.rocket0.x*this.gameScaleRatio), (this.rocket0.y*this.gameScaleRatio) - (Math.random()*20*this.rocket0.scale), this.gameScaleRatio*this.rocket0.scale);
       gameGFX.rocket.sprites[1].draw(gameCntx, this.rocket0.x*this.gameScaleRatio, this.rocket0.y*this.gameScaleRatio, this.gameScaleRatio*this.rocket0.scale);
